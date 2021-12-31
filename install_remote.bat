@@ -1,7 +1,7 @@
 @ECHO OFF
 
 Rem SET STREAMLABS HOST PC ADDRESS HERE
-set slobsHost=10.1.1.174
+set slobsHost=192.168.0.57
 Rem SET TUNNEL PORT AS SET ON THE HOST
 set tunnelPort=29999
 

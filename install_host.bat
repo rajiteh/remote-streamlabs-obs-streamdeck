@@ -2,7 +2,8 @@
 
 Rem SET TUNNEL PORT TO BE EXPOSED 
 set tunnelPort=29999
-Rem TODO: SET REMOTE HOST IPS 
+Rem SET REMOTE MACHINES/SUBNETS THAT CAN CONNECT TO TUNNEL, LEAVE EMPTY TO ALLOW ANY
+set remoteIp=192.168.0.50
 REM set remoteHosts=
 
 pushd %~dp0
@@ -17,7 +18,6 @@ set service_name=com.rajiteh.remoteslobs.host
 %nssm% set %service_name% AppExit Default Restart
 %nssm% set %service_name% AppRestartDelay 0
 
-Rem TODO: Make only accept conections from trusted IP
-netsh advfirewall firewall add rule name="%service_name%" dir=in program="%tcptunnel%" profile=any action=allow protocol=TCP localport=%tunnelPort%
+netsh advfirewall firewall add rule name="%service_name%" dir=in program="%tcptunnel%" profile=any action=allow protocol=TCP localport=%tunnelPort% remoteIp=%remoteIp%
 
 sc start %service_name%
